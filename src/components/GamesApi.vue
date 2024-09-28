@@ -1,17 +1,17 @@
 <template>
     <div>
       <h1>Games Opinion</h1>
-      <div class="games-api" v-if="games.length > 0" >
+      <div class="games-api-div" v-if="games.length > 0" >
         <!-- Mostrar la lista de juegos obtenidos -->
-        <div v-for="game in games" :key="game.id" class="game-card">
+        <div v-for="game in games.slice(5,20)" :key="game.id" class="games-card">
           <h2>{{ game.name }}</h2>
-          <img :src="game.background_image" alt="Imagen del juego" class="game-image">
+          <img :src="game.background_image" alt="Imagen del juego" class="games-image">
           <p>Rating: {{ game.rating }}</p>
           <hr>
           <p>Lanzamiento: {{game.released}}</p>
           <hr>
           <router-link :to="`/opinion/${game.name}/${encodeURIComponent(game.background_image)}`">
-            <button>Opinar</button>
+          <button>Opinar</button>
           </router-link>
         </div>
       </div>
@@ -23,12 +23,6 @@
 </template>
 
 <script>
-  // Tu API key obtenida de rawg.io
-  const apiKey = '5970bc3620ff44f7842a503c15299755';
-
-  // La URL base de la API
-  const baseUrl = 'https://api.rawg.io/api';
-
   export default {
     name: 'gamesApi-comp',
     data() {
@@ -40,7 +34,7 @@
       async fetchGames() {
         try {
           // Realiza una solicitud a la API para obtener una lista de juegos populares
-          const response = await fetch(`${baseUrl}/games?key=${apiKey}`);
+          const response = await fetch(`https://api.rawg.io/api/games?key=5970bc3620ff44f7842a503c15299755`);
 
           // Verifica si la respuesta es exitosa
           if (!response.ok) {
@@ -67,8 +61,7 @@
 </script>
 
 <style scoped>
-
-  .games-api {
+  .games-api-div {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
@@ -77,15 +70,16 @@
   }
 
   /* Estilos básicos para los juegos */
-  .game-card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 8px;
-    border-radius: 8px;
-    text-align: center;
+  .games-card {
+    background-color: #1c2833;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    color: #ecf0f1;
   }
 
-  .game-image {
+  .games-image {
     width: 100%;
     max-width: 300px;
     height: auto;

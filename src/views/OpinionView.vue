@@ -36,7 +36,7 @@
               <button @click="deleteOpinion(index)" class="delete-btn">Eliminar</button>
             </div>
           </div>
-          <p>{{ opinion.comment }}</p>
+          <p class="opinion-comment">{{ opinion.comment }}</p>
         </div>
       </div>
     </div>
@@ -171,12 +171,13 @@
   }
 
   .opinion-card {
-    border: 1px solid #ddd;
+    border: 1px solid #b6b6b6;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    background-color: white;
   }
 
   .opinion-card:hover {
@@ -225,5 +226,9 @@
 
   .delete-btn:hover {
     background-color: #c0392b;
+  }
+
+  .opinion-comment{
+    color: black;
   }
   </style>
